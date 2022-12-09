@@ -33,7 +33,7 @@ python ./main.py
 As shown below, one can forge realistic photoacoustic images from the same graffiti with overlapping different noises.
 
 
-<img src="./For_readme/fig1.png" alt="show" style="zoom:140%;" /> 
+<img src="./For_readme/fig1.png" alt="show" style="zoom:200%;" /> 
 
 **The left two are input images while the right are their photoacoustic version.**
 
