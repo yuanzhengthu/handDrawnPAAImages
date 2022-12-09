@@ -14,6 +14,8 @@ Our project is coded with PyQt5. One can draw graffiti on the board and generate
 
 
 ```
+# first download model from Google Drive
+# 
 cd dir_of_the_project
 python ./main.py
 ```
