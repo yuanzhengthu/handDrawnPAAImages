@@ -23,7 +23,7 @@ python ./main.py
 ## GUI snapshot
 *Note:* **PyQt5-based hand-drawn graffiti for photoacoustic images generation**. The GUI with graffiti and without graffiti are shown below.
 
-<img src="./For_readme/fig0.png" alt="show" style="zoom:50%;" /> 
+<img src="./For_readme/fig00.png" alt="show" style="zoom:50%;" /> 
 <img src="./For_readme/fig01.png" alt="show" style="zoom:50%;" /> 
 <img src="./For_readme/fig02.png" alt="show" style="zoom:50%;" />
 
