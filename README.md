@@ -40,6 +40,7 @@ As shown below, one can forge realistic photoacoustic images from the same graff
 ### * Photoacoustic image super-resolution
 *Note:* The shallow and deep feature extraction of SwinIR enables us to utilize the self-similarity of blood vessel images.
 These results also prove the abilities of our proposed method in forging photoacoustic images.
+
 <img src="./For_readme/fig2.png" alt="show" style="zoom:51%;" /> 
 
 **(a) high-resolution ground truth; (b) reconstructed by Bicubic algorithm; and (c)-(f) reconstructed by SwinIR trained with (c) COCO dataset; (d) mouse brain PAA images; (e) real human lips PAA images; (f) forged human lips PAA images.**
