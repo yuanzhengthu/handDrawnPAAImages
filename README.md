@@ -37,7 +37,7 @@ As shown below, one can forge realistic photoacoustic images from the same graff
 
 **The left two are input images while the right are their photoacoustic version.**
 
-### * Photoacoustic image super-resolution
+### * 🚀Photoacoustic image super-resolution
 *Note:* The shallow and deep feature extraction of SwinIR enables us to utilize the self-similarity of blood vessel images.
 These results also prove the abilities of our proposed method in forging photoacoustic images.
 
