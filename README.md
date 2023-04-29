@@ -21,7 +21,7 @@ python ./main.py
 ```
 ## 🚀Schematic
 <img src="./For_readme/fig000.png" alt="show" style="zoom:50%;" /> 
-
+*Note:* (a)-(g) The schematic of training super-resolution blood vessel images for PAA forged from hand-drawn doodles. (a) The rain-like noise image. (b) A hand-drawn doodle. (c) The input of image generation model related to (b) overlapped with (a). (d) The normalized Gaussian noise image. (e) The generated PAA image from (c). (f) The normalized PAA image. (g) The reconstructed super-resolution PAA image. (a')-(f') The schematic of training super-resolution blood vessel images for PAA forged from cropped images, corresponding to the (a)-(f) in the left. (a') The rain-like noise image. (b') A random subset of a high-resolution PAA image \textbf{HR}. (c') The image of (b') overlapped with (a'). (f') The generated PAA image via the generation model from (c'). (i) The structure of UNet-based denoising neural network (DeNN). \textbf{HR}: A high-resolution PAA image. \textbf{ResAtten.}: ResBlock-based attention module. Scale bar: 0.50mm.
 ## 🚀GUI snapshot
 *Note:* **PyQt5-based hand-drawn graffiti for photoacoustic images generation**. The GUI with graffiti and without graffiti are shown below.
 
