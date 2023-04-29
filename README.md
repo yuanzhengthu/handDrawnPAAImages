@@ -20,7 +20,7 @@ cd dir_of_the_project
 python ./main.py
 ```
 ## 🚀Schematic
-<img src="./For_readme/fig.png" alt="show" style="zoom:50%;" /> 
+<img src="./For_readme/fig000.png" alt="show" style="zoom:50%;" /> 
 
 ## 🚀GUI snapshot
 *Note:* **PyQt5-based hand-drawn graffiti for photoacoustic images generation**. The GUI with graffiti and without graffiti are shown below.
