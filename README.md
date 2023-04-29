@@ -1,4 +1,4 @@
-# Super-Resolution Photoacoustic Angiopgraphy Assisted by Images Forged from Hand-Drawn Graffiti🚀🚀🚀🚀🚀
+# Self-similarity-based super-resolution of photoacoustic angiography from hand-drawn doodles🚀🚀🚀🚀🚀
 
 [Paper]( ) |  [Project](https://github.com/yuanzhengthu/handDrawnPAAImages)
 
