@@ -19,6 +19,8 @@ Our project is coded with PyQt5. One can draw graffiti on the board and generate
 cd dir_of_the_project
 python ./main.py
 ```
+## 🚀Schematic
+<img src="./For_readme/fig.png" alt="show" style="zoom:50%;" /> 
 
 ## 🚀GUI snapshot
 *Note:* **PyQt5-based hand-drawn graffiti for photoacoustic images generation**. The GUI with graffiti and without graffiti are shown below.
