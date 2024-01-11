@@ -45,7 +45,7 @@ def train(opt):
                         f'Loss: {diffusion.get_current_loss()}')
             # Set the noise schedule
             diffusion.set_new_noise_schedule()
-            validate(opt, diffusion, val_loader, current_step, logger)
+            validate(opt, diffusion, val_loader, epoch, logger)
             diffusion.set_new_noise_schedule()
             # Save checkpoints
             logger.info('Saving models and training states.')
@@ -54,7 +54,7 @@ def train(opt):
     logger.info('Training finished.')
 
 
-def validate(opt, model, val_loader, current_step, logger):
+def validate(opt, model, val_loader, epoch, logger):
 
     psnr_sum = 0.0
     ssim_sum = 0.0
@@ -68,9 +68,9 @@ def validate(opt, model, val_loader, current_step, logger):
         hr_img = tensor2img(visuals['HR'])
         forged_img = tensor2img(visuals['SR'])
         lr_img = tensor2img(visuals['LR'])
-        cv2.imwrite('{}/{}_{}_hr.png'.format(opt["path"]["results"], current_step, idx), hr_img)
-        cv2.imwrite('{}/{}_{}_sr.png'.format(opt["path"]["results"], current_step, idx), forged_img)
-        cv2.imwrite('{}/{}_{}_lr.png'.format(opt["path"]["results"], current_step, idx), lr_img)
+        cv2.imwrite('{}/{}_{}_hr.png'.format(opt["path"]["results"], epoch, idx), hr_img)
+        cv2.imwrite('{}/{}_{}_sr.png'.format(opt["path"]["results"], epoch, idx), forged_img)
+        cv2.imwrite('{}/{}_{}_lr.png'.format(opt["path"]["results"], epoch, idx), lr_img)
         # Calculate PSNR for the current batch
         psnr_sum += psnr(hr_img, forged_img)
         ssim_sum += ssim(hr_img, forged_img)
@@ -80,8 +80,8 @@ def validate(opt, model, val_loader, current_step, logger):
     average_psnr = psnr_sum / num_samples
     average_ssim = ssim_sum / num_samples
     # Log the validation results
-    logger.info(f'Validation at step {current_step}:\tAverage PSNR: {average_psnr}')
-    logger.info(f'Validation at step {current_step}:\tAverage SSIM: {average_ssim}')
+    logger.info(f'Validation at step {epoch}:\tAverage PSNR: {average_psnr}')
+    logger.info(f'Validation at step {epoch}:\tAverage SSIM: {average_ssim}')
     # You can add more metrics and save the validation results as needed
 
 
