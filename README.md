@@ -1,6 +1,5 @@
 # DOVE: Doodled Vessel Enhancement for Photoacoustic Angiography Super Resolution 🚀🚀🚀🚀🚀
 
-# Self-similarity-based Super-Resolution of Photoacoustic Angiography from Hand-drawn Doodles 🚀🚀🚀🚀🚀
 
 [Paper]( ) | [Project](https://github.com/yuanzhengthu/handDrawnPAAImages)
 
