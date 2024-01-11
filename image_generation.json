@@ -1,0 +1,65 @@
+{
+    "name": "hand_drawn_20240101",
+    "phase": "train",
+    "gpu_ids": [0,1],
+    "distributed": false,
+    "path": {
+        "log": "logs",
+        "results": "results",
+        "checkpoint": "checkpoints",
+        "resume_state": null
+    },
+    "datasets": {
+        "train": {
+            "mode": "HR",
+            "dataroot": "dataset/train",
+            "l_resolution": 32,
+            "r_resolution": 256,
+            "batch_size": 8,
+            "num_workers": 0,
+            "use_shuffle": true
+        },
+        "val": {
+            "mode": "HR",
+            "dataroot": "dataset/val",
+            "l_resolution": 50,
+            "r_resolution": 400
+        }
+    },
+    "model": {
+        "finetune_norm": false,
+        "unet": {
+            "in_channel": 2,
+            "out_channel": 1,
+            "inner_channel": 64,
+            "channel_multiplier": [1, 2, 4, 8, 8],
+            "attn_res": [16],
+            "res_blocks": 2,
+            "dropout": 0.2
+        },
+        "diffusion": {
+            "image_size": 256,
+            "channels": 1,
+            "conditional": true
+        },
+        "beta_schedule": {
+            "train": {
+                "schedule": "linear",
+                "n_timestep": 1000,
+                "linear_start": 1e-6,
+                "linear_end": 1e-2
+            },
+            "val": {
+                "schedule": "linear",
+                "n_timestep": 1000,
+                "linear_start": 1e-6,
+                "linear_end": 1e-2
+            }
+        }
+    },
+    "train": {
+        "lr_rate": 1e-4,
+        "n_epochs": 2000,
+        "val_freq": 10
+    }
+}
