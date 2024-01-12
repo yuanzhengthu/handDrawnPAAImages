@@ -14,7 +14,7 @@ import data as Data
 from model.model import DDPM
 from utils import parse, tensor2img
 import argparse
-
+import torch
 def QImage2CV(qimg):
     """
     Convert QImage to OpenCV format.
@@ -60,7 +60,6 @@ def rain_blur(noise, length=10, angle=0, w=1):
     blurred = np.array(blurred, dtype=np.uint8)
 
     return blurred
-
 
 class MainWidget(QWidget):
     def __init__(self, Parent=None):
@@ -149,25 +148,30 @@ class MainWidget(QWidget):
         image = self.__paintBoard.GetContentAsQImage()
         image.save(savePath[0])
 
+
+
     def on_btn_genBV_Clicked(self):
         qimg = self.__paintBoard.GetContentAsQImage()
         img = QImage2CV(qimg)
 
-        img = cv2.resize(img, (32, 32), interpolation=cv2.INTER_CUBIC)
-        img = cv2.resize(img, (256, 256), interpolation=cv2.INTER_CUBIC)
+        #img = cv2.resize(img, (200, 200), interpolation=cv2.INTER_NEAREST)
+        img = cv2.resize(img, (400, 400), interpolation=cv2.INTER_CUBIC)
         cv2.imwrite('./PyQT/qt_showoff/temp_draw_' + str(self.COUNT) + '.png', img)
-        all_rain = np.zeros((256, 256), dtype=np.uint8)
+        all_rain = np.zeros_like(img[:,:,0], dtype=np.uint8)
 
         for idx in range(2):
-            noise_value = np.random.randint(20, 80)
-            rain_length = np.random.randint(10, 50)
+            noise_value = np.random.randint(50, 80)
+            rain_length = np.random.randint(30, 60)
             rain_angular = np.random.randint(-60, 60)
-            rain_width = np.random.randint(2, 5) * 2 + 1
+            rain_width = np.random.randint(2, 5) * 3 + 5
             noise = get_noise(img, value=noise_value)
             rain = rain_blur(noise, length=rain_length, angle=-rain_angular, w=rain_width)
             all_rain = rain + all_rain
-            img = cv2.blur(img + cv2.cvtColor(rain, cv2.COLOR_GRAY2RGB), (3, 3))
+            # img = cv2.blur(img + cv2.cvtColor(rain, cv2.COLOR_GRAY2RGB), (3, 3))
+            img = img/3 + cv2.cvtColor(rain, cv2.COLOR_GRAY2RGB)/2
+            img = img * 1.8
 
+            # img = (img - img.min())/(img.max()-img.min())
         cv2.imwrite('./PyQT/qt_showoff/temp_noise_' + str(self.COUNT) + '.png', all_rain)
         cv2.imwrite('./PyQT/qt_showoff/temp_input_' + str(self.COUNT) + '.png', img)
 
@@ -188,7 +192,7 @@ class MainWidget(QWidget):
         opt = parse(args)
 
         # Initialize dataset and dataloader
-        opt["path"]["resume_state"] = "experiments/PA"
+        opt["path"]["resume_state"] = "experiments/E570"
         opt["datasets"]["val"]["dataroot"] = "PyQT/qt_input"
         opt["datasets"]["val"]["mode"] = "HR"
         opt["datasets"]["val"]["l_resolution"] = 50
@@ -200,11 +204,24 @@ class MainWidget(QWidget):
         # Set the noise schedule
         diffusion.set_new_noise_schedule()
         for idx, val_data in enumerate(val_loader):
+            if idx < self.COUNT:
+                continue
             diffusion.feed_data(val_data)
             diffusion.test(continous=False)  # You may need to adjust the test function based on your model
             visuals = diffusion.get_current_visuals(need_LR=False)
+            #forged_img = tensor2img(visuals['SR'])
+            # Resize to (50, 50) with nearest interpolation
+            #forged_img = cv2.resize(forged_img, (50, 50), interpolation=cv2.INTER_NEAREST)
+            # Resize to (400, 400) with bicubic interpolation
+            #forged_img = cv2.resize(forged_img, (400, 400), interpolation=cv2.INTER_CUBIC)
+            # Convert NumPy arrays to PyTorch tensors
+            #val_data['SR'] = torch.from_numpy(forged_img).unsqueeze(0).unsqueeze(0).float()
+            #diffusion.feed_data(val_data)
+            #diffusion.test(continous=False)
+            #visuals = diffusion.get_current_visuals(need_LR=False)
             forged_img = tensor2img(visuals['SR'])
             forged_img = cv2.resize(forged_img, (480, 460), interpolation=cv2.INTER_CUBIC)
+            # forged_img[forged_img < 120] = 0
             cv2.imwrite('PyQT/qt_showoff/temp_sr_' + str(self.COUNT) + '.png', forged_img)
 
         self.singleOffset = QPoint(0, 0)
