@@ -1,3 +1,4 @@
+# We're thrilled to announce that our paper has been accepted for publication in Medical Image Analysis!
 # DOVE: Doodled Vessel Enhancement for Photoacoustic Angiography Super Resolution 🚀🚀🚀🚀🚀
 
 
