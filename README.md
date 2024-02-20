@@ -2,7 +2,7 @@
 # DOVE: Doodled Vessel Enhancement for Photoacoustic Angiography Super Resolution
 
 
-[Paper](https://www.sciencedirect.com/science/article/abs/pii/S1361841524000318)) | [Project](https://github.com/yuanzhengthu/handDrawnPAAImages)
+[Paper](https://www.sciencedirect.com/science/article/abs/pii/S1361841524000318) | [Project](https://github.com/yuanzhengthu/handDrawnPAAImages)
 
 ## 🚀 Brief
 This project presents a PyQt implementation for **Super-Resolution Photoacoustic Angiography Assisted by Images Forged from Hand-Drawn Graffiti**. 
