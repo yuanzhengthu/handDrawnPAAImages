@@ -163,7 +163,7 @@ class MainWidget(QWidget):
             noise_value = np.random.randint(50, 80)
             rain_length = np.random.randint(30, 60)
             rain_angular = np.random.randint(-60, 60)
-            rain_width = np.random.randint(2, 5) * 3 + 5
+            rain_width = np.random.randint(3, 7) * 2 + 5
             noise = get_noise(img, value=noise_value)
             rain = rain_blur(noise, length=rain_length, angle=-rain_angular, w=rain_width)
             all_rain = rain + all_rain
